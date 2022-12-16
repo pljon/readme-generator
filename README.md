@@ -44,4 +44,11 @@
   ## Questions
 
   If you have any questions about this project, please contact me at jonplaras@gmail.com. You can also visit my [GitHub profile](https://github.com/pljon) to view my other projects.
-  
+
+  ## Sample 
+
+  Example README.md using this generator can be found in the `/utils` folder
+
+  ## Demo
+
+  ![animated-gif](./utils/readme-generator.gif)
