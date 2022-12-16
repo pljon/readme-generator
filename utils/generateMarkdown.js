@@ -84,8 +84,7 @@ function generateMarkdown(answers) {
   
   ${tocMarkdown}
   
-  <br />
-  ## Installation
+## Installation
 
   ${answers.installation}
 
