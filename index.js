@@ -1,7 +1,7 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
-const {generateMarkdown} = require('./utils/generateMarkdown')
+const generateMarkdown = require('./utils/generateMarkdown');
 
 // TODO: Create an array of questions for user input
 const questions = [
@@ -13,7 +13,27 @@ const questions = [
     {
         type: 'input',
         name: 'description',
-        message: 'Enter a description for your project:'   
+        message: 'Enter a short description for your project:'   
+    },
+    {
+        type: 'input',
+        name: 'description1',
+        message: 'Enter a short answer for what your motivation was:'   
+    },
+    {
+        type: 'input',
+        name: 'description2',
+        message: 'Enter a short answer for why you built this project:'   
+    },
+    {
+        type: 'input',
+        name: 'description3',
+        message: 'Enter a short answer for what problem(s) it solves:'   
+    },
+    {
+        type: 'input',
+        name: 'description4',
+        message: 'Enter a short answer for what you learned:'   
     },
     {
         type: 'input',
@@ -59,15 +79,19 @@ const questions = [
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, answers) {
-    const answersString = JSON.stringify(answers);
+    // const answersString = JSON.stringify(answers);
 
-    fs.writeFile(fileName, answersString, (err) => {
+    fs.writeFile(fileName, generateMarkdown(answers), (err) => {
         if (err) {
             console.error(err);
             return;
         }
 
         console.log(`Wrote user answers to ${fileName}`);
+        console.log(`Please review punctuations to make any additional revisions.`);
+        console.log(`Note: This is only a template generator!`);
+        console.log(`You may need to add additional syntax to get your desired outcome.`);
+        console.log(`Thank you again for using this README generator :)`);
     }); 
 }
 
@@ -75,6 +99,7 @@ function writeToFile(fileName, answers) {
 function init() {
     // prompts the user with the questions array to get the answers for markdown
     inquirer.prompt(questions).then((answers) => {
+
         // write the answers to a file
         writeToFile('README.md', answers);
     });

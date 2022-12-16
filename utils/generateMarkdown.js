@@ -9,7 +9,7 @@ function renderLicenseBadge(license) {
   const badgeImg = `https://img.shields.io/badge/license-${license}-green`;
 
   // uses README syntax so that a badge img shows up with alt text License
-  return `[![License](${badgeImg})]`;
+  return `![License](${badgeImg})`;
 };
 
 // TODO: Create a function that returns the license link
@@ -44,21 +44,21 @@ function renderLicenseSection(license) {
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(answers) {
   // destructured data object for easier placement in markdown
-  const {
-    projectName, 
-    description, 
-    tableOfContents, 
-    installation, 
-    usage, 
-    license, 
-    contributing, 
-    tests, 
-    email,
-    username,
-  } = answers;
+  // const {
+  //   projectName, 
+  //   description, 
+  //   tableOfContents, 
+  //   installation, 
+  //   usage, 
+  //   license, 
+  //   contributing, 
+  //   tests, 
+  //   email,
+  //   username,
+  // } = answers;
 
   // table of contents answer string to be split per item, trimmed for any extra white spaces
-  const tocItems = tableOfContents.split(',').map((item) => item.trim());
+  const tocItems = answers.tableOfContents.split(',').map((item) => item.trim());
 
   // take split items and create a markdown for each item to be put into the table of contents
   const tocMarkdown = tocItems.map((item) => {
@@ -72,35 +72,40 @@ function generateMarkdown(answers) {
   .join('\n'); // all part of tocMarkdown, does function to each item first, then joins
 
   return `
-  # ${projectName}
+  # ${answers.projectName}
 
-  ${description}
+  ${answers.description}
+
+  ## Description
+
+  ${answers.description1} ${answers.description2} ${answers.description3} ${answers.description4}
 
   ## Table of Contents
-
+  
   ${tocMarkdown}
   
+  <br />
   ## Installation
 
-  ${installation}
+  ${answers.installation}
 
   ## Usage
 
-  ${usage}
+  ${answers.usage}
 
-  ${renderLicenseSection(license)}
+  ${renderLicenseSection(answers.license)}
 
   ## Contributing
 
-  ${contributing}
+  ${answers.contributing}
 
   ## Tests
 
-  ${tests}
+  ${answers.tests}
 
   ## Questions
 
-  If you have any questions about this project, please contact me at ${email}. You can also visit my [GitHub profile](https://github.com/${username}) to view my other projects.
+  If you have any questions about this project, please contact me at ${answers.email}. You can also visit my [GitHub profile](https://github.com/${answers.username}) to view my other projects.
   `;
   }
 
